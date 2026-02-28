@@ -3,6 +3,7 @@ package com.weather.sensorapi.service;
 import com.weather.sensorapi.dto.QueryRequest;
 import com.weather.sensorapi.dto.QueryResult;
 import com.weather.sensorapi.enums.Metric;
+import com.weather.sensorapi.exception.InvalidQueryException;
 import com.weather.sensorapi.repository.SensorReadingRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -25,14 +26,14 @@ public class SensorQueryService {
             to = LocalDateTime.now();
             from = to.minusDays(1);
         } else if (request.from() == null || request.to() == null) {
-            throw new IllegalArgumentException("Both 'from' and 'to' dates must be provided together");
+            throw new InvalidQueryException("Both 'from' and 'to' dates must be provided together");
         } else {
             if (request.from().isAfter(request.to())) {
-                throw new IllegalArgumentException("'from' date must be before 'to' date");
+                throw new InvalidQueryException("'from' date must be before 'to' date");
             }
             long daysBetween = ChronoUnit.DAYS.between(request.from(), request.to());
             if (daysBetween > 31) {
-                throw new IllegalArgumentException("Date range must not exceed 31 days");
+                throw new InvalidQueryException("Date range must not exceed 31 days");
             }
             from = request.from().atStartOfDay();
             to = request.to().plusDays(1).atStartOfDay().minusNanos(1);

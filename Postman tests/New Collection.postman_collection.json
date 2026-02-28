@@ -1,0 +1,107 @@
+{
+	"info": {
+		"_postman_id": "733d1693-35fa-4878-9449-0282760aeeeb",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14536342"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/api/sensors/query?metrics=HUMIDITY&statistic=AVERAGE",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/sensors/query?metrics=HUMIDITY&statistic=AVERAGE",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"sensors",
+						"query"
+					],
+					"query": [
+						{
+							"key": "metrics",
+							"value": "HUMIDITY"
+						},
+						{
+							"key": "statistic",
+							"value": "AVERAGE"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/api/sensors/query?sensorIds=sensor-1&metrics=TEMPERATURE&statistic=AVERAGE",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/sensors/query?sensorIds=sensor-1&metrics=TEMPERATURE&statistic=AVERAGE",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"sensors",
+						"query"
+					],
+					"query": [
+						{
+							"key": "sensorIds",
+							"value": "sensor-1"
+						},
+						{
+							"key": "metrics",
+							"value": "TEMPERATURE"
+						},
+						{
+							"key": "statistic",
+							"value": "AVERAGE"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": " http://localhost:8080/api/sensors/sensor-1/readings",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n    \"metric\": \"TEMPERATURE\",\r\n    \"value\": 10\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/sensors/sensor-1/readings",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"sensors",
+						"sensor-1",
+						"readings"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
